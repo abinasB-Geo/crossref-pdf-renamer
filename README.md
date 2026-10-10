@@ -173,7 +173,7 @@ Keep the following files together in one folder:
 CrossrefPDFRenamer/
 ├── crossref_pdf_renamer.py
 ├── requirements.txt
-├── run_crossref_renamer.bat
+├── run_crossref_pdf_renamer_gui.bat
 └── README.md
 ```
 
