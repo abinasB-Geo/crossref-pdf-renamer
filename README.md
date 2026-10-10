@@ -245,22 +245,37 @@ If the selected PDFs come from multiple folders, the log is still written to the
 
 The program uses `crossref_cache.json` to cache Crossref responses. This can reduce repeat lookups and make subsequent processing more efficient.
 
-## 10. Optional: Create a Windows Executable
+## 10. Optional: Build a Windows Executable
 
-For users who prefer a desktop application without launching the Python script directly, PyInstaller can be used to build a Windows executable distribution.
+If you prefer to run Crossref PDF Renamer as a Windows desktop application without manually launching the Python script, the repository includes a `build_EXE.bat` file to automate the executable-building process.
 
-Run the following command from the program folder:
+### How to build the executable
 
-```bat
-python -m PyInstaller --onedir --windowed --name CrossrefPDFRenamer crossref_pdf_renamer.py
-```
+1. Download or clone the GitHub repository to your Windows computer.
+2. Ensure Python 3.10 is installed and available through the Python launcher.
+3. Open the project folder containing `crossref_pdf_renamer.py` and `build_EXE.bat`.
+4. Double-click `build_EXE.bat`.
+5. Wait for the script to create a virtual environment, install the required packages, check the Python script for syntax errors, and build the application using PyInstaller.
+6. After a successful build, locate the generated application inside the `dist` folder.
 
-The output is normally created under:
+The batch file automatically performs the following operations:
 
-```text
-dist\CrossrefPDFRenamer\
-```
+- Creates a dedicated Python 3.10 virtual environment named `.venv`.
+- Upgrades pip and installs `requests`, `pymupdf`, and `pyinstaller`.
+- Checks the main Python script for syntax errors using `py_compile`.
+- Builds a one-folder (`--onedir`) Windows application without a console window (`--windowed`).
+- Collects the required PyMuPDF components and excludes unnecessary modules such as Matplotlib, SciPy, pandas, and NumPy to help reduce the packaged application's size.
+- Cleans previous PyInstaller build artifacts before generating the new build.
 
+### Important notes
+
+- **Python 3.10 is required** by the supplied build script. Make sure it is installed before running the batch file.
+- Keep `crossref_pdf_renamer.py` and `build_EXE.bat` in the same project folder.
+- The output is a **one-folder application**, not a single standalone `.exe`. Distribute or move the complete generated application folder, including its supporting files.
+- Crossref metadata searches and BibTeX retrieval require an internet connection.
+- Test the built application using copies of a few PDFs before processing your main research library.
+
+If the build fails, run `build_EXE.bat` from Command Prompt so that you can inspect the error messages.
 Test the executable on a small set of copied PDFs before using it on your primary research library. Packaging may require additional adjustments depending on the computer and Python environment.
 
 The program still requires an internet connection for Crossref lookups and BibTeX retrieval.
