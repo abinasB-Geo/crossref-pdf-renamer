@@ -1,7 +1,7 @@
 @echo off
 cd /d "%~dp0"
 
-python -m pip install -r requirements.txt
+python -m pip install pymupdf requests pyinstaller
 if errorlevel 1 (
     echo Installation failed.
     pause
