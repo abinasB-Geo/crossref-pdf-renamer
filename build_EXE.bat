@@ -2,7 +2,7 @@
 cd /d "%~dp0"
 
 if not exist ".venv\Scripts\python.exe" (
-    python -3.10 -m venv .venv
+    python -m venv .venv
     if errorlevel 1 goto error
 
     .venv\Scripts\python.exe -m pip install --upgrade pip
